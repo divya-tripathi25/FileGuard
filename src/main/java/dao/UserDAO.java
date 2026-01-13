@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDAO {
+public class UserDAO{
     public static boolean isExists(String email) throws SQLException {
         Connection connection= MyConnection.getConnection();
         PreparedStatement ps=connection.prepareStatement("select * from users");
