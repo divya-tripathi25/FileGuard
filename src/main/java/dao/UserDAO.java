@@ -14,7 +14,7 @@ public class UserDAO{
         PreparedStatement ps=connection.prepareStatement("select * from users");
         ResultSet rs= ps.executeQuery();
         while(rs.next()){
-            String e=rs.getString(1);
+            String e=rs.getString("email");
             if(e.equals(email))
                 return true;
 
