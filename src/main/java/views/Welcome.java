@@ -1,7 +1,7 @@
 package views;
 
 import dao.UserDAO;
-import models.User;
+import model.User;
 import service.GenerateOTP;
 import service.SendOTPService;
 import service.UserService;
@@ -44,6 +44,8 @@ public class Welcome {
                 System.out.println("Enter the OTP");
                 String otp=sc.nextLine();
                 if(otp.equals(genOTP)){
+                    new UserView(email).home();
+
                     System.out.println("Welcome");
                 }else{
                     System.out.println("Wrong OTP");

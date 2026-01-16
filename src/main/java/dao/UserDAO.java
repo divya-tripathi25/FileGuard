@@ -1,7 +1,7 @@
 package dao;
 
 import db.MyConnection;
-import models.User;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

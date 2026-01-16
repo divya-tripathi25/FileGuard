@@ -1,7 +1,7 @@
 package service;
 
 import dao.UserDAO;
-import models.User;
+import model.User;
 
 import java.sql.SQLException;
 
