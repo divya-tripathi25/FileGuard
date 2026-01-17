@@ -6,10 +6,10 @@ public class Data {
     private String path;
     private String email;
 
-    public Data( String path, String fileName, int id) {
-        this.path = path;
-        this.fileName = fileName;
+    public Data(int id, String fileName, String path) {
         this.id = id;
+        this.fileName = fileName;
+        this.path = path;
     }
 
     public int getId() {
@@ -43,10 +43,11 @@ public class Data {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Data(String path, int id, String fileName, String email) {
-        this.path = path;
+
+    public Data(int id, String fileName, String path, String email) {
         this.id = id;
         this.fileName = fileName;
+        this.path = path;
         this.email = email;
     }
 }

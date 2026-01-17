@@ -22,10 +22,12 @@ public class DataDAO {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String name = rs.getString("filename");
+                String name = rs.getString("name");
                 String path = rs.getString("path");
 
                 files.add(new Data(id, name, path));
+
+
             }
 
         } catch (SQLException e) {
@@ -42,33 +44,33 @@ public class DataDAO {
         ps.setString(3,file.getEmail());
         File f=new File(file.getPath());
         FileReader fr=new FileReader(f);
-        ps.setCharacterStream(4,fr,f.length);
+        ps.setCharacterStream(4,fr,f.length());
         int ans=ps.executeUpdate();
         fr.close();
         f.delete();
         return ans;
 
     }
-    public static void unide(int id) throws SQLException,IOException{
-        Connection connection=MyConnection.getConnection();
-        PreparedStatement ps= connection.prepareStatement("select path,bin_data from data where id=?");
-        ps.setInt(1,id);
-        ResultSet rs=ps.executeQuery();
-        String path=rs.getString("path");
-        Clob c=rs.getClob("bin_data");
+    public static void unhide(int id) throws SQLException, IOException {
+        Connection connection = MyConnection.getConnection();
+        PreparedStatement ps = connection.prepareStatement("select path, bin_data from data where id = ?");
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        String path = rs.getString("path");
+        Clob c = rs.getClob("bin_data");
 
-        Reader r=c.getCharacterStream();
-        FileWriter fw=new FileWriter(path);
+        Reader r = c.getCharacterStream();
+        FileWriter fw = new FileWriter(path);
         int i;
-        while((i=r.read())!=-1){
+        while ((i = r.read()) != -1) {
             fw.write((char) i);
         }
         fw.close();
-        ps= connection.prepareStatement("delete from data where id=?");
-        ps.setInt(1,id);
+        ps = connection.prepareStatement("delete from data where id = ?");
+        ps.setInt(1, id);
         ps.executeUpdate();
-        System.out.println("Successfully unhidden");
+        System.out.println("Successfully Unhidden");
     }
-
 
 }
